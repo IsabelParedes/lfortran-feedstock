@@ -1,0 +1,56 @@
+context:
+  name: "lfortran"
+  version: 0.35.0
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  # url: https://github.com/lfortran/lfortran/releases/download/v${{ version }}/${{ name }}-${{ version }}.tar.gz
+  # sha256: 5ecc1ae03067b985943c45f6ec05e9f6e72efd6ad004b052e7a98ba552ff79b0
+  - git: https://github.com/lfortran/lfortran.git
+    rev: eff69eecb3834500d4e78f55de69ae550776077f
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - cmake
+    - make
+    - emsdk
+    - re2c
+    - bison=3.4
+    - llvmdev =16
+    - pandoc
+    - toml
+    - binutils
+    - zstd-static
+  host:
+    - llvmdev =16
+    - zlib
+    - zstd-static
+    - binutils
+
+
+about:
+  homepage: https://lfortran.org
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: Modern interactive LLVM-based Fortran compiler
+  description: |
+    LFortran is a modern open-source (BSD licensed) interactive Fortran
+    compiler built on top of LLVM. It can execute user's code interactively to
+    allow exploratory work (much like Python, MATLAB or Julia) as well as
+    compile to binaries with the goal to run user’s code on modern
+    architectures such as multi-core CPUs and GPUs.
+  documentation: https://docs.lfortran.org/
+
+extra:
+  recipe-maintainers:
+    - certik
+    - Shaikh-Ubaid
